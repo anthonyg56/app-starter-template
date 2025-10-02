@@ -1,4 +1,4 @@
-import { resend, fromEmail, appName } from '../../clients/resend';
+import { resend, fromEmail, appName } from '../../client';
 import { OTPSignInData } from './types';
 import { generateOTPSignInEmailHtml } from './template-html';
 import { generateOTPSignInEmailText } from './template-text';

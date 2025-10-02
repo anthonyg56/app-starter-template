@@ -1,4 +1,4 @@
-import { appName } from '../../clients/resend';
+import { appName } from '../../client';
 
 export function generateWelcomeEmailHtml({ 
   userName, 

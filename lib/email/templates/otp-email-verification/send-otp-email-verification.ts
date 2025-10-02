@@ -1,4 +1,4 @@
-import { resend, fromEmail, appName } from '../../clients/resend';
+import { resend, fromEmail, appName } from '../../client';
 import { OTPEmailVerificationData } from './types';
 import { generateOTPEmailVerificationHtml } from './template-html';
 import { generateOTPEmailVerificationText } from './template-text';

@@ -1,4 +1,4 @@
-import { resend, fromEmail, appName } from '../../clients/resend';
+import { resend, fromEmail, appName } from '../../client';
 import { WelcomeEmailData } from './types';
 import { generateWelcomeEmailHtml } from './template-html';
 import { generateWelcomeEmailText } from './template-text';

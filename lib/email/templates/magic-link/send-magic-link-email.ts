@@ -1,4 +1,4 @@
-import { resend, fromEmail, appName } from '../../clients/resend';
+import { resend, fromEmail, appName } from '../../client';
 import { MagicLinkEmailData } from './types';
 import { generateMagicLinkEmailHtml } from './template-html';
 import { generateMagicLinkEmailText } from './template-text';

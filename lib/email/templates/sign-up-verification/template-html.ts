@@ -1,11 +1,11 @@
-import { appName } from '../../clients/resend';
+import { appName } from '../../client';
 
-export function generateMagicLinkEmailHtml({ 
-  magicLink, 
+export function generateVerificationEmailHtml({ 
+  verificationUrl, 
   userName, 
   to 
 }: { 
-  magicLink: string; 
+  verificationUrl: string; 
   userName?: string; 
   to: string; 
 }) {
@@ -15,7 +15,7 @@ export function generateMagicLinkEmailHtml({
       <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Sign in to ${appName}</title>
+        <title>Verify your email</title>
         <style>
           body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px; }
           .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; text-align: center; border-radius: 8px 8px 0 0; }
@@ -26,17 +26,17 @@ export function generateMagicLinkEmailHtml({
       </head>
       <body>
         <div class="header">
-          <h1>🔐 Sign in to ${appName}</h1>
+          <h1>Welcome to ${appName}!</h1>
         </div>
         <div class="content">
-          <h2>Your magic link is ready!</h2>
+          <h2>Verify your email address</h2>
           <p>${userName ? `Hi ${userName},` : 'Hi there,'}</p>
-          <p>You requested to sign in to ${appName}. Click the button below to securely sign in without a password:</p>
-          <a href="${magicLink}" class="button">Sign In</a>
+          <p>Thank you for signing up! To complete your registration and start using ${appName}, please verify your email address by clicking the button below:</p>
+          <a href="${verificationUrl}" class="button">Verify Email Address</a>
           <p>If the button doesn't work, you can copy and paste this link into your browser:</p>
-          <p><a href="${magicLink}">${magicLink}</a></p>
-          <p>This link will expire in 10 minutes for security reasons.</p>
-          <p>If you didn't request this sign-in link, you can safely ignore this email.</p>
+          <p><a href="${verificationUrl}">${verificationUrl}</a></p>
+          <p>This link will expire in 24 hours for security reasons.</p>
+          <p>If you didn't create an account with ${appName}, you can safely ignore this email.</p>
         </div>
         <div class="footer">
           <p>© ${new Date().getFullYear()} ${appName}. All rights reserved.</p>

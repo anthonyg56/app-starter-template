@@ -1,4 +1,4 @@
-import { resend, fromEmail, appName } from '../../clients/resend';
+import { resend, fromEmail, appName } from '../../client';
 import { OTPForgetPasswordData } from './types';
 import { generateOTPForgetPasswordEmailHtml } from './template-html';
 import { generateOTPForgetPasswordEmailText } from './template-text';

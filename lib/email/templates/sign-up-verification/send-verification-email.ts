@@ -1,4 +1,4 @@
-import { resend, fromEmail, appName } from '../../clients/resend';
+import { resend, fromEmail, appName } from '../../client';
 import { VerificationEmailData } from './types';
 import { generateVerificationEmailHtml } from './template-html';
 import { generateVerificationEmailText } from './template-text';

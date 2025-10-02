@@ -3,9 +3,9 @@ import { emailOTP, username } from "better-auth/plugins"
 import { nextCookies } from "better-auth/next-js"
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { isProduction } from "../utils/utils"
-import { db } from "./db";
+import { db } from "../database/client";
 import { sendVerificationEmail, sendPasswordResetEmail, sendWelcomeEmail, sendMagicLinkEmail } from "../email/email";
-import { account, session, user, verification } from "@/lib/database/schema";
+import { account, session, user, verification } from "@/lib/database/schemas";
 import { sendOTPEmailVerification, sendOTPForgetPasswordEmail } from "../email";
 
 export const auth = betterAuth({
@@ -30,9 +30,10 @@ export const auth = betterAuth({
   },
   plugins: [
     nextCookies(),
-    username({
-      
-    }),
+    // username({
+    //   maxUsernameLength: 30,
+
+    // }),
     emailOTP({
       otpLength: 6,
       sendVerificationOnSignUp: true,

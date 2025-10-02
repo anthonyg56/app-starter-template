@@ -1,4 +1,4 @@
-import { resend, fromEmail, appName } from '../../clients/resend';
+import { resend, fromEmail, appName } from '../../client';
 import { ResetPasswordEmailData } from './types';
 import { generatePasswordResetEmailHtml } from './template-html';
 import { generatePasswordResetEmailText } from './template-text';
