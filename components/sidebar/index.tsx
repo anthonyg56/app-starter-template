@@ -13,7 +13,7 @@ export default function AppSidebar() {
     return (
         <Sidebar>
             <SidebarHeader>
-                <H1>Tribe</H1>
+                <H1>Header</H1>
             </SidebarHeader>
             <SidebarContent>
                 <SidebarNavigation />
