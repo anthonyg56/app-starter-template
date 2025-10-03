@@ -2,16 +2,21 @@
 
 import { createContext, useContext, useEffect, useState, useCallback, type ReactNode } from "react"
 import { BetterAuthUser } from "../@types/auth"
+import { signOut } from "@/lib/clients/auth-client"
+import { AUTH_MESSAGES } from "../constants/auth"
+import { useRouter } from "next/navigation"
+import { useToast } from "@/components/ui/use-toast"
 
 interface AuthContextType {
-  user: BetterAuthUser | null
-  isLoading: boolean
-  error: string | null
-  setUser: (user: BetterAuthUser | null) => void
-  setLoading: (loading: boolean) => void
-  setError: (error: string | null) => void
-  clearError: () => void
-  reset: () => void
+  user: BetterAuthUser | null,
+  isLoading: boolean,
+  error: string | null,
+  setUser: (user: BetterAuthUser | null) => void,
+  setLoading: (loading: boolean) => void,
+  setError: (error: string | null) => void,
+  clearError: () => void,
+  reset: () => void,
+  signOut: () => void,
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined)
@@ -25,6 +30,9 @@ export function AuthProvider({ children, initialUser }: AuthProviderProps) {
   const [user, setUserState] = useState<BetterAuthUser | null>(null)
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [error, setErrorState] = useState<string | null>(null)
+
+  const router = useRouter();
+  const { toast } = useToast();
 
   // Memoized action functions
   const setUser = useCallback((user: BetterAuthUser | null) => {
@@ -49,6 +57,23 @@ export function AuthProvider({ children, initialUser }: AuthProviderProps) {
     setErrorState(null)
   }, [])
 
+  const signOut = useCallback(async () => {
+    try {
+      await signOut();
+      setUser(null)
+      setIsLoading(false)
+      setErrorState(null)
+      toast({
+        title: "Success",
+        description: AUTH_MESSAGES.SUCCESS.SIGN_OUT,
+      })
+      router.push("/sign-in")
+    } catch (error) {
+      setErrorState(error as string)
+    }
+
+  }, []);
+
   // Initialize with initial user data if provided
   useEffect(() => {
     if (initialUser && !user) {
@@ -71,6 +96,7 @@ export function AuthProvider({ children, initialUser }: AuthProviderProps) {
     setError,
     clearError,
     reset,
+    signOut,
   }
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
